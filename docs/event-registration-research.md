@@ -195,3 +195,41 @@ Keep the site's integration deliberately thin:
 - Use the provider as the source of truth for registration status; the website should not promise “spots remaining” unless that value is supplied reliably.
 
 That scope makes the provider replaceable, allows the hosted-link and overlay prototypes to share one page design, and postpones API/webhook work until there is a demonstrated operational need.
+
+## Addendum: using a personal Tikkie as the attendance deposit
+
+_Checked 25 September 2026 against Tikkie and ABN AMRO's official consumer, business, and developer material._
+
+### Decision
+
+A personal Tikkie can work for a deliberately manual first edition, but it cannot be the registration system or automatically prove that a named website registrant has a place. Treat it as **evidence that money arrived**, then let the organizer reconcile and confirm the attendee. Do not show “your spot is confirmed” merely because the visitor returned from Tikkie.
+
+For the prototype, the form button should therefore say **Continue to payment** rather than **Reserve my seat**. After payment, the site can invite the guest back, but the state is “payment awaiting confirmation” until AI Convos has matched it. The questionnaire should be offered from the confirmation email (and optionally from the pending screen), with a durable personal link so it can be completed later.
+
+### What a personal Tikkie does and does not establish
+
+- The sender sees whether a request was paid and receives a push notification. ABN AMRO also says the recipient sees the payer's **name and account number** in the payment description, plus the request subject ([Tikkie FAQ](https://tikkie.me/vraag-en-antwoord/nl), [ABN AMRO consumer Tikkie page](https://www.abnamro.nl/nl/prive/internet-en-mobiel/apps/tikkie/)). That is useful payment evidence.
+- It is not reliable attendee identity. Someone else can pay, a joint-account name can differ, and the payment contains no registration email or questionnaire state. Tikkie explicitly says it does not know who the sender shared a request with. A reusable link can also be forwarded. The Tikkie payment list is therefore a **paid-transactions list, not a guest list**.
+- The official consumer material documents no custom return URL, webhook, callback, or API for personal requests. The payer gets Tikkie's own post-payment experience; the website cannot securely infer payment from a browser return or an “I paid” click. The published [Tikkie API](https://developer.abnamro.com/api-products/tikkie/reference-documentation) is explicitly for **Tikkie business customers**.
+- Personal requests are valid for two weeks and can be deleted early. One request can be sent to a group, and one request can receive at most €2,500 in total; a personal Tikkie amount cannot exceed €950, and a receiver can receive at most €2,500 through Tikkie in 24 hours ([Tikkie FAQ](https://tikkie.me/vraag-en-antwoord/nl)). Tikkie also exposes an official “maximum number of payments reached” state without publishing that count, so a shared link should not be used as the event's capacity control ([limit page](https://tikkie.me/max-betalingen)).
+- Most supported instant payments arrive within seconds, but the FAQ allows up to one working day when the receiving bank does not support Instant Payments. A daily/request limit, expired/deleted link, bank limit, outage, abandoned bank flow, or a sold-out event between form submission and payment can all interrupt the happy path.
+- A personal refund is manual. Tikkie warns not to send money back to its clearing account: the organizer needs the payer's own account number or can ask the payer to send a new Tikkie ([Tikkie FAQ](https://tikkie.me/vraag-en-antwoord/nl)). By contrast, the business API models payment requests, payments, and refunds as separate resources ([ABN AMRO's Tikkie API announcement](https://developer.abnamro.com/index.php/news/announcement-tikkie-api)).
+
+### Recommended manual v1 flow
+
+1. The guest submits name and email. Ask only one matching question: **“Will the payment come from another person's or joint account? If so, whose name will we see?”** Create a pending registration.
+2. Show the fixed fee, refund/cancellation rule, two-week link deadline, and **Pay with Tikkie**. Open Tikkie in a new tab so the pending page survives. Keep a plain copyable link/QR fallback.
+3. The returning page says **“Paid? We will match it and email your confirmation.”** An “I paid” button may help the organizer prioritize reconciliation, but must not grant a place.
+4. The organizer matches amount and payer/account name to the pending form, then marks it confirmed and sends one confirmation email. Paid-and-matched registrations—not form submissions—are the capacity source of truth.
+5. That email links to **Start the questionnaire** and **Do it later**. The same personal link should remain usable until the event; at check-in, staff can open the outstanding questionnaire on a shared device if needed.
+6. Disable/delete the Tikkie and switch the page to sold-out/waitlist before releasing the final place. Keep an exception queue for unmatched payments, duplicate payments, payment without a form, and refunds.
+
+This remains a human-operated workflow. For a small room it may be an acceptable experiment, provided the page promises confirmation only after matching and somebody owns reconciliation. It is a poor fit if immediate confirmation, exact real-time capacity, automatic reminders, or low organizer effort is required.
+
+### Product boundary, privacy, and automation alternative
+
+Tikkie describes the consumer app as repaying friends, and says its consumer limits exist partly to prevent commercial use. Tikkie separately positions **Tikkie Business** for accepting customer payments ([consumer FAQ](https://tikkie.me/vraag-en-antwoord/nl), [Tikkie Business](https://www.abnamro.nl/nl/zakelijk/producten/betalen/tikkie-zakelijk/index.html)). A recurring publicly advertised event fee is close enough to that boundary that AI Convos should ask Tikkie whether personal use is acceptable before publishing the link; “informal” or “not for profit” does not by itself answer the product-eligibility question.
+
+If AI Convos later has an eligible registered organization, Tikkie Business currently provides a portal/app with payer-name, reference, status, custom validity, and a separately requested API; ABN AMRO's developer material adds programmatic payment requests, payment records, refunds, and automated reconciliation. The business service currently starts at €7.50/month including 20 paid Tikkies, then per-paid-request charges ([business product and pricing](https://www.abnamro.nl/nl/zakelijk/producten/betalen/tikkie-zakelijk/index.html)). ABN AMRO states that its business products require a KVK-registered organization, so eligibility must be checked rather than assumed ([business account guidance](https://www.abnamro.nl/nl/zakelijk/producten/zakelijke-rekening/opzeggen.html)). If that organizational overhead is not wanted, use a paid event provider such as Luma or pretix instead of building confirmation around a personal Tikkie.
+
+The registration privacy note should say that AI Convos will use the submitted contact details and the account-holder name visible with the Tikkie payment to reconcile attendance, identify Tikkie/ABN AMRO as the payment provider, and state retention/deletion and the questionnaire purpose. Do not copy full IBANs into the guest-list tool merely for matching; collect and retain the minimum data necessary, restrict organizer access, and keep questionnaire answers separate from raw payment records where practical. ABN AMRO publishes its current general [privacy statement](https://www.abnamro.com/en/home/information/privacy-statement), while Tikkie provides service-specific privacy information through its site/app.

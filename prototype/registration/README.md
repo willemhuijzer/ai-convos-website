@@ -26,10 +26,14 @@ Then open:
 
 Use the floating arrows or keyboard left/right arrows to switch. Form submission and the hosted-page handoff are intentionally stubbed; no data leaves the browser.
 
-## Decision placeholder
+## Review decision
 
-Chosen approach: _pending review_
+Preferred direction: **Variant A**. It is closest to the current AI Convos visual language and can support an animated transition from selecting an edition into registration.
 
-What to keep from the winning variant: _pending review_
+Keep: the date/title header, compact schedule, and native-feeling registration panel.
 
-Registration provider: _pending research and review_
+Remove: the descriptive subheader and public seat count.
+
+Current CTA: **Continue to payment**. A personal Tikkie cannot automatically confirm the website registrant, so the working flow includes a manual payment-matching state before the confirmation email.
+
+Still unresolved: the attendance-deposit amount and policy, capacity handling, payment identity mismatches, and whether the questionnaire can start before payment is manually confirmed.
