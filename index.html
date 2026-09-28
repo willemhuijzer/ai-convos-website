@@ -145,17 +145,7 @@
     .event-date span { color: rgba(25, 26, 24, 0.28); }
     .event-meta { grid-row: span 2; text-align: right; }
     .free { color: #396e99; }
-    .programme {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
-      gap: 1.5rem;
-      align-items: center;
-      margin-top: 1.2rem;
-      padding: 1.1rem 1.2rem;
-      background: var(--accent-soft);
-    }
-    .programme strong { display: block; font-size: 1rem; font-weight: 500; }
-    .programme p { margin: 0.35rem 0 0; color: var(--muted); line-height: 1.45; }
+    .event-join { display: inline-block; margin-top: 0.55rem; color: var(--ink); }
     .text-link {
       width: fit-content;
       padding-bottom: 0.16rem;
@@ -190,7 +180,6 @@
     .talk-title { line-height: 1.35; }
     .talk-speaker { margin-top: 0.35rem; color: var(--accent); font-family: var(--mono); font-size: 0.75rem; }
 
-    .about-section { padding-top: clamp(4rem, 9vw, 7.5rem); }
     .section-title {
       max-width: 22ch;
       margin: 0;
@@ -200,18 +189,6 @@
       line-height: 1.02;
       text-wrap: balance;
     }
-    .pillars {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      margin-top: 2.3rem;
-      border-top: 1px solid var(--line);
-    }
-    .pillar { padding: 1.5rem 1.5rem 2rem 0; border-bottom: 1px solid var(--line); }
-    .pillar:nth-child(odd) { border-right: 1px solid var(--line); }
-    .pillar:nth-child(even) { padding-left: 1.5rem; }
-    .pillar h3 { margin: 0; font-size: 1.15rem; font-weight: 500; }
-    .pillar p { max-width: 40ch; margin: 0.6rem 0 0; color: var(--muted); line-height: 1.5; }
-
     .speak-section { padding-top: clamp(4.5rem, 9vw, 8rem); }
     .speak-section p { max-width: 51ch; margin: 1.15rem 0 0; color: var(--muted); font-size: 1.05rem; line-height: 1.55; }
     .speak-section .text-link { display: inline-block; margin-top: 1.5rem; font-size: 0.9rem; }
@@ -220,13 +197,15 @@
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 2rem;
-      max-width: 36rem;
-      margin-left: max(20px, calc((100% - 1180px) / 2));
-      padding-block: 6rem 2.5rem;
+      width: min(1180px, calc(100% - 40px));
+      margin: 6rem auto 0;
+      padding: 2.5rem 0;
+      border-top: 1px solid var(--line);
       color: var(--muted);
       font-family: var(--mono);
       font-size: 0.75rem;
       line-height: 1.75;
+      text-align: center;
     }
     .footer-title { margin-bottom: 0.5rem; color: var(--ink); }
     footer a { border-bottom: 1px solid transparent; }
@@ -238,10 +217,7 @@
       .site-nav a:first-child { display: none; }
       .event-card { grid-template-columns: 3rem minmax(0, 1fr); }
       .event-meta { grid-column: 2; grid-row: auto; text-align: left; }
-      .programme, .pillars { grid-template-columns: 1fr; }
-      .pillar:nth-child(odd) { border-right: 0; }
-      .pillar:nth-child(even) { padding-left: 0; }
-      footer { margin-left: 14px; }
+      footer { width: calc(100% - 28px); }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -267,8 +243,8 @@
     <section class="hero shell" aria-labelledby="hero-title">
       <h1 id="hero-title">ai convos</h1>
       <div class="hero-copy">
-        <p class="hero-lede">Here it is about the conversation: short talks, extended Q&amp;A.</p>
-        <p class="hero-detail">When everyone in the room brings a different but technical perspective, conversations go deep and no problem is left unsolved.</p>
+        <p class="hero-lede">here it is about the conversation: short talks, extended Q&amp;A.</p>
+        <p class="hero-detail">learn about new problems, share your own experiences and meet your peers.</p>
       </div>
       <div class="stage" aria-hidden="true">
         <canvas id="conversation-stage"></canvas>
@@ -281,15 +257,13 @@
       <div class="event-card">
         <div class="event-day">thu</div>
         <div class="event-name" id="next-event-title">ai convos #4</div>
-        <div class="event-meta">19:00 till late<br>keizersgracht 452<br><span class="free">free</span></div>
-        <div class="event-date">05<span>.11.2026</span></div>
-      </div>
-      <div class="programme">
-        <div>
-          <strong>Three talks. Three conversations.</strong>
-          <p>The line-up is taking shape. Join the list and we’ll share the speakers as they are confirmed.</p>
+        <div class="event-meta">
+          19:00 till late<br>
+          keizersgracht 452<br>
+          <span class="free">free</span><br>
+          <a class="text-link event-join" href="mailto:hello@aiconvos.nl?subject=Join%20AI%20Convos%20%234">join the list</a>
         </div>
-        <a class="text-link" href="mailto:hello@aiconvos.nl?subject=Join%20AI%20Convos%20%234">join the list</a>
+        <div class="event-date">05<span>.11.2026</span></div>
       </div>
     </section>
 
@@ -332,34 +306,24 @@
       </article>
     </section>
 
-    <section class="about-section shell" id="about" aria-labelledby="about-title">
-      <h2 class="section-title" id="about-title">Specific problems. Technical builders. Subjects worth discovering.</h2>
-      <div class="pillars">
-        <article class="pillar"><h3>At the frontier</h3><p>New research, emerging labs, and technical ideas before they become familiar.</p></article>
-        <article class="pillar"><h3>Behind familiar systems</h3><p>The models quietly shaping hospitals, trains, warehouses, energy grids, and more.</p></article>
-        <article class="pillar"><h3>AI in society</h3><p>Concrete technical work with consequences for fairness, safety, public life, and culture.</p></article>
-        <article class="pillar"><h3>The wonderfully unexpected</h3><p>Applications so unusual that knowing they exist is already worth the conversation.</p></article>
-      </div>
-    </section>
-
     <section class="speak-section shell" id="speak" aria-labelledby="speak-title">
-      <h2 class="section-title" id="speak-title">Got ten minutes of something you actually learned?</h2>
-      <p>One concrete problem, experiment, or failure worth explaining. We are looking for builders, researchers, and technical leads—not generic company pitches.</p>
+      <h2 class="section-title" id="speak-title">got ten minutes of something you actually learned?</h2>
+      <p>one concrete problem, experiment, or failure worth sharing. we are looking for builders, researchers, and technical leads; not generic company pitches.</p>
       <a class="text-link" href="mailto:hello@aiconvos.nl?subject=Talk%20proposal%20for%20AI%20Convos">hello@aiconvos.nl</a>
     </section>
   </main>
 
   <footer>
     <div>
+      <div class="footer-title">contact</div>
+      <a href="mailto:hello@aiconvos.nl">hello@aiconvos.nl</a><br>
+      <a href="#speak">propose a talk</a>
+    </div>
+    <div>
       <div class="footer-title">address</div>
       gaide office<br>
       keizersgracht 452<br>
       1016 gd amsterdam
-    </div>
-    <div>
-      <div class="footer-title">contact</div>
-      <a href="mailto:hello@aiconvos.nl">hello@aiconvos.nl</a><br>
-      <a href="#speak">propose a talk</a>
     </div>
   </footer>
 
