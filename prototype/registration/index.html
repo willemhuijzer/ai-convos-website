@@ -132,6 +132,15 @@
     .a-form { padding: 26px; background: var(--white); box-shadow: 0 12px 40px oklch(0.19 0.012 95 / .08); }
     .a-form h2 { margin: 0; font-size: 25px; font-weight: 400; letter-spacing: -.03em; }
     .a-form form { display: grid; gap: 20px; margin-top: 25px; }
+    .a-step[hidden] { display: none; }
+    .a-step { animation: step-in 180ms ease-out; }
+    .a-step h2:focus { outline: none; }
+    .a-step p { font-size: 14px; line-height: 1.55; }
+    .a-actions { display: grid; gap: 12px; margin-top: 24px; }
+    .secondary-button { border: 1px solid var(--line); background: transparent; padding: 13px 16px; cursor: pointer; font: 12px/1.4 var(--mono); }
+    .field textarea { width: 100%; min-height: 76px; resize: vertical; border: 1px solid var(--line); background: transparent; padding: 10px; font: 14px/1.5 var(--sans); color: var(--ink); }
+    .a-state { margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--line); font: 10px/1.5 var(--mono); color: var(--muted); }
+    @keyframes step-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
     /* B — event story alongside a visible embedded-tool boundary */
     .b-shell { display: grid; grid-template-columns: minmax(0, .92fr) minmax(440px, 1.08fr); min-height: calc(100vh - 58px); }
@@ -308,7 +317,7 @@
       .prototype-switcher { bottom: 10px; grid-template-columns: 40px minmax(190px, 1fr) 40px; width: calc(100vw - 20px); }
     }
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
+      *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; }
     }
   </style>
 </head>
@@ -333,7 +342,7 @@
           <div>
             <div class="eyebrow">registration</div>
             <h1 id="a-title">ai convos #4</h1>
-            <p class="a-meta">19:00 till late · keizersgracht 452 · amsterdam · attendance deposit tba</p>
+            <p class="a-meta">19:00 till late · keizersgracht 452 · amsterdam · contribution tba</p>
           </div>
         </div>
         <div class="a-grid">
@@ -348,8 +357,9 @@
             </div>
           </div>
           <div class="a-form">
+            <div class="a-step" data-step="details">
             <div class="eyebrow">step 1 of 2</div>
-            <h2>Your details</h2>
+            <h2 tabindex="-1">Your details</h2>
             <form data-demo-form="payment">
               <div class="field">
                 <label for="a-name">your name</label>
@@ -359,13 +369,53 @@
                 <label for="a-email">email</label>
                 <input id="a-email" type="email" autocomplete="email" placeholder="ada@example.com">
               </div>
+              <div class="field">
+                <label for="a-notes">anything else? (optional)</label>
+                <textarea id="a-notes" placeholder="Paying for someone else? Let us know who."></textarea>
+              </div>
               <div class="check-row">
                 <input id="a-updates" type="checkbox">
                 <label for="a-updates">Tell me about future ai convos too (optional).</label>
               </div>
               <button class="primary-button" type="submit">continue to payment →</button>
-              <p class="form-note">Next: pay the attendance deposit with Tikkie. Your spot is confirmed by email after we match the payment.</p>
+              <p class="form-note">A small contribution helps cover the evening and makes it easier to count on everyone coming.</p>
             </form>
+            </div>
+            <div class="a-step" data-step="payment" hidden>
+              <div class="eyebrow">step 2 of 2</div>
+              <h2 tabindex="-1">Your contribution</h2>
+              <p>Pay with Tikkie, then come back here to continue.</p>
+              <p class="form-note">Amount to be decided.</p>
+              <div class="a-actions">
+                <button class="primary-button" type="button" id="a-tikkie">pay with Tikkie ↗</button>
+                <button class="secondary-button" type="button" data-next-step="questionnaire">continue to questionnaire →</button>
+                <button class="secondary-button" type="button" data-next-step="details">back to details</button>
+              </div>
+            </div>
+            <div class="a-step" data-step="questionnaire" hidden>
+              <div class="eyebrow">before we meet</div>
+              <h2 tabindex="-1">Who’s in the room?</h2>
+              <p>Your answers help us share a picture of how the room uses and thinks about AI. Please fill this in before the evening, or when you arrive.</p>
+              <div class="field">
+                <label for="a-answer">example first question · wording to be decided</label>
+                <p>What are you exploring with AI at the moment?</p>
+                <textarea id="a-answer" placeholder="Your answer…"></textarea>
+              </div>
+              <div class="a-actions">
+                <button class="primary-button" type="button" id="a-question-next">next question →</button>
+                <button class="secondary-button" type="button" data-next-step="later">I’ll do this later</button>
+                <button class="secondary-button" type="button" data-next-step="payment">back to payment</button>
+              </div>
+            </div>
+            <div class="a-step" data-step="later" hidden>
+              <div class="eyebrow">see you there</div>
+              <h2 tabindex="-1">Another time is fine.</h2>
+              <p>Please complete the questionnaire before the evening. If you haven’t, we’ll ask you to do it when you arrive.</p>
+              <div class="a-actions">
+                <button class="primary-button" type="button" data-next-step="questionnaire">start now →</button>
+              </div>
+            </div>
+            <div class="a-state" id="a-state" role="status">Demo · details · nothing sent or saved</div>
           </div>
         </div>
       </div>
@@ -477,7 +527,7 @@
   <script>
     (() => {
       const variants = [
-        { key: "A", name: "native-feeling form", detail: "Tito/pretix inline widget · single column" },
+        { key: "A", name: "details → Tikkie → questions", detail: "preferred direction · informal registration" },
         { key: "B", name: "story + overlay", detail: "Luma-style modal · provider-owned UI" },
         { key: "C", name: "clean handoff", detail: "hosted Luma page · privacy-first" }
       ];
@@ -489,6 +539,25 @@
       const modalClose = modal.querySelector("[data-close-modal]");
       let toastTimer;
       let modalTrigger;
+      let demoPaymentOpened = false;
+      function showStep(step) {
+        document.querySelectorAll(".a-step").forEach((panel) => {
+          panel.hidden = panel.dataset.step !== step;
+        });
+        document.querySelector(`[data-step="${step}"] h2`).focus({ preventScroll: true });
+        document.querySelector("#a-state").textContent = `Demo · ${step} · payment ${demoPaymentOpened ? "link simulated, unverified" : "not checked"} · nothing sent or saved`;
+      }
+      document.querySelectorAll("[data-next-step]").forEach((button) => {
+        button.addEventListener("click", () => showStep(button.dataset.nextStep));
+      });
+      document.querySelector("#a-tikkie").addEventListener("click", () => {
+        demoPaymentOpened = true;
+        showStep("payment");
+        showToast("Demo — a live Tikkie link would open here. Return here to continue; no payment check is required.");
+      });
+      document.querySelector("#a-question-next").addEventListener("click", () => {
+        showToast("Questionnaire placeholder — later questions and saving answers are still to be designed.");
+      });
 
       function currentIndex() {
         const requested = new URLSearchParams(location.search).get("variant")?.toUpperCase();
@@ -555,10 +624,8 @@
       document.querySelectorAll("[data-demo-form]").forEach((form) => {
         form.addEventListener("submit", (event) => {
           event.preventDefault();
-          const message = form.dataset.demoForm === "payment"
-            ? "Prototype only — next would be the Tikkie payment step. No details were sent or stored."
-            : "Prototype only — no registration was sent and no personal data was stored.";
-          showToast(message);
+          if (form.dataset.demoForm === "payment") showStep("payment");
+          else showToast("Prototype only — no registration was sent and no personal data was stored.");
         });
       });
       document.querySelectorAll("[data-demo-action='handoff']").forEach((button) => {

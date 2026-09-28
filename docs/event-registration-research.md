@@ -4,6 +4,8 @@ _Research checked 24 September 2026. Pricing and feature packaging are especiall
 
 ## Executive recommendation
 
+**Current decision (28 September 2026):** the organizer has chosen to explore Variant A with a personal Tikkie and informal manual matching. Guests proceed directly to the questionnaire regardless of payment verification. The original provider recommendation below and the stricter manual-confirmation flow in the Tikkie addendum are historical alternatives, superseded for this prototype by the [agreed flow](../prototype/registration/README.md#agreed-flow--28-september-2026). The provider capability research remains useful; no new Tikkie capabilities are assumed.
+
 For AI Convos, start with a branded event-detail page on the existing site and let **Luma** own registration. The event card should navigate to the on-site detail/registration page; its primary call to action can either open Luma's registration overlay or send the visitor to the hosted Luma page. This preserves the site's story and visual identity while avoiding a custom attendee-management system.
 
 Why Luma is the best default for this specific use case:
