@@ -4,11 +4,12 @@ export const edition = Object.freeze({
   id: "04",
   title: "ai convos #4",
   date: "date to be announced",
+  month: "tba",
+  day: "—",
   time: "time to be announced",
-  venue: "venue to be announced",
+  venue: "address to be announced · Amsterdam",
   contribution: "amount to be announced",
   // A public form endpoint: POST FormData; acknowledge saved data with { ok: true }.
   registrationEndpoint: "",
   paymentUrl: "",
-  questionnaireUrl: "",
 });

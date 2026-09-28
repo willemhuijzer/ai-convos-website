@@ -10,7 +10,7 @@ const storageKey = `ai-convos:registration:${edition.id}`;
 let sending = false;
 
 // Only a receipt flag and an idempotency identifier survive a refresh in this tab.
-// Names, emails, notes, payment status and questionnaire answers are never stored here.
+// Names, emails, notes and payment status are never stored here.
 let receipt;
 try { receipt = JSON.parse(sessionStorage.getItem(storageKey)); } catch { /* Storage may be unavailable. */ }
 if (!receipt || typeof receipt.id !== "string" || typeof receipt.saved !== "boolean") {
@@ -42,24 +42,23 @@ function configureLink(id, value) {
   if (url) link.href = url;
 }
 configureLink("payment", edition.paymentUrl);
-configureLink("questionnaire", edition.questionnaireUrl);
 
 function requestedStage() {
   return location.hash.slice(1) || (receipt.saved ? "payment" : "details");
 }
 
 function showStage(requested, { navigate = false, focus = true } = {}) {
-  const allowed = ["details", "payment", "questionnaire", "later"];
+  const allowed = ["details", "payment", "complete"];
   let stage = allowed.includes(requested) ? requested : "details";
-  // Questionnaire links can be shared freely; only the saved-details claim is guarded.
-  if (stage === "payment" && !receipt.saved) stage = "details";
+  // Finishing registration acknowledges saved details, never a verified payment.
+  if (stage !== "details" && !receipt.saved) stage = "details";
   if (stage === "details" && receipt.saved) stage = "payment";
   document.querySelector("#register-another").hidden = !receipt.saved;
   document.querySelectorAll("[data-stage]").forEach((panel) => {
     panel.hidden = panel.dataset.stage !== stage;
   });
   document.querySelectorAll("[data-progress]").forEach((item) => {
-    if (item.dataset.progress === (stage === "later" ? "questionnaire" : stage)) item.setAttribute("aria-current", "step");
+    if (item.dataset.progress === stage) item.setAttribute("aria-current", "step");
     else item.removeAttribute("aria-current");
   });
   if (navigate && location.hash !== `#${stage}`) history.pushState(null, "", `#${stage}`);

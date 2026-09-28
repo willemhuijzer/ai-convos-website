@@ -1,18 +1,16 @@
 .registration-shell { width: min(920px, calc(100% - 40px)); margin: clamp(2.5rem, 6vw, 5rem) auto 0; }
-.edition-heading { display: grid; grid-template-columns: 100px minmax(0, 1fr); gap: 24px; align-items: center; padding-bottom: 32px; border-bottom: 1px solid var(--line); }
-.edition-number { font-size: 76px; line-height: .85; letter-spacing: -.06em; }
-.edition-number span { display: block; margin-top: 13px; color: var(--muted); font: 11px/1.4 var(--mono); letter-spacing: .1em; }
+.edition-heading { display: grid; grid-template-columns: 100px minmax(0, 1fr); gap: 8px 24px; align-items: baseline; padding-bottom: 32px; border-bottom: 1px solid var(--line); }
+.edition-month, .edition-heading .eyebrow { margin: 0; font: 11px/1.5 var(--mono); letter-spacing: .05em; }
+.edition-month { color: var(--muted); }
 .edition-heading .eyebrow { color: var(--accent); }
-.edition-heading h1 { margin: 8px 0 0; font-size: clamp(40px, 6vw, 66px); line-height: 1; font-weight: 400; letter-spacing: -.055em; }
-.edition-date { margin: 14px 0 0; color: var(--muted); font: 12px/1.5 var(--mono); }
+.edition-day, .edition-heading h1 { margin: 0; font-size: clamp(40px, 6vw, 66px); line-height: 1; font-weight: 400; letter-spacing: -.055em; }
+.edition-location { grid-column: 2; margin: 6px 0 0; color: var(--muted); font: 12px/1.5 var(--mono); }
 .registration-layout { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 56px; align-items: start; margin-top: 40px; }
 .edition-facts { margin: 0; }
 .edition-facts div { padding: 17px 0; border-bottom: 1px solid var(--line); }
 .edition-facts div:first-child { padding-top: 0; }
 .edition-facts dt { margin-bottom: 7px; color: var(--accent); font: 11px/1.5 var(--mono); letter-spacing: .05em; }
 .edition-facts dd { margin: 0; font-size: 15px; line-height: 1.5; }
-.aside-note { margin: 22px 0; color: var(--muted); font-size: 14px; line-height: 1.6; }
-.contact-link { display: inline-block; font-size: 11px; }
 .registration-card { min-width: 0; padding: 30px; background: #fffefa; box-shadow: 0 14px 44px rgba(25, 26, 24, .06); }
 .steps { display: flex; justify-content: space-between; gap: 10px; margin: 0 0 32px; padding: 0; list-style: none; color: var(--muted); font: 10px/1.5 var(--mono); }
 .steps li { padding-bottom: 10px; border-bottom: 1px solid var(--line); flex: 1; white-space: nowrap; }
@@ -53,15 +51,13 @@ fieldset:disabled input, fieldset:disabled textarea { opacity: .6; }
 .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
 @media (max-width: 720px) {
   .registration-shell { width: calc(100% - 28px); margin-top: 28px; }
-  .edition-heading { grid-template-columns: 64px minmax(0, 1fr); gap: 16px; padding-bottom: 24px; }
-  .edition-number { font-size: 54px; }
-  .edition-heading h1 { font-size: clamp(32px, 7.8vw, 48px); }
+  .edition-heading { grid-template-columns: 64px minmax(0, 1fr); column-gap: 16px; padding-bottom: 24px; }
+  .edition-day, .edition-heading h1 { font-size: clamp(32px, 7.8vw, 48px); }
   .registration-layout { grid-template-columns: minmax(0, 1fr); gap: 28px; margin-top: 26px; }
   .edition-facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 20px; }
   .edition-facts div { padding: 12px 0; }
   .edition-facts div:first-child { padding-top: 12px; }
   .edition-facts div:last-child { grid-column: 1 / -1; }
-  .aside-note { margin: 14px 0; }
   .registration-card { padding: 24px 20px; }
   .registration-footer { margin-top: 32px; }
 }

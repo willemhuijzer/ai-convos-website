@@ -4,13 +4,13 @@ The homepage's upcoming-edition card and “join” link lead to `registration.h
 
 ## Current setup
 
-The organizer has not supplied a contribution amount, Tikkie link, questionnaire link, or registration storage destination. **The checked-in page therefore shows “registration opens soon” and disables submission.** It cannot accept real registrations until a storage endpoint is connected. The full configured flow is tested with browser-only fixtures; no attendee data is sent to a real service during tests.
+The organizer has not supplied a contribution amount, Tikkie link, or registration storage destination. **The checked-in page therefore shows “registration opens soon” and disables submission.** It cannot accept real registrations until a storage endpoint is connected. The full configured flow is tested with browser-only fixtures; no attendee data is sent to a real service during tests.
 
-The production homepage and page use TBA for the date, time, and venue because `events/04-ai-convos.md` still marks them unconfirmed. Historical contradictions are preserved there.
+The production homepage and page use TBA for the date, time, and specific address because `events/04-ai-convos.md` still marks them unconfirmed. Amsterdam is confirmed. Historical contradictions are preserved there. The registration header aligns the month with the blue label and the day with the edition title; the address sits below the title. Set `date` (full date including year), `month`, and `day` together once confirmed.
 
 ## Files
 
-- `registration.html`: accessible registration, payment, questionnaire-link, and return-later sections.
+- `registration.html`: accessible details, payment, and completion sections.
 - `assets/site.css`: shared tokens, typography, header, homepage styles, and cross-document transition.
 - `assets/registration.css`: registration-specific layout and responsive styles.
 - `assets/edition.js`: public labels and connection URLs shared by both pages.
@@ -40,15 +40,15 @@ For a cross-origin endpoint, permit the site's actual origin in CORS. Requests o
 
 No marketing opt-in or automated email workflow is configured. Contact details are requested for this edition only. Review the short data-use copy against the chosen storage provider before opening registration.
 
-## Payment and questionnaire
+## Payment and completion
 
-Set `paymentUrl` to this edition's Tikkie and `contribution` to the agreed amount. Set `questionnaireUrl` to the external survey (Google Forms, Mentimeter, or another provider). Links open in a separate tab without passing names, emails, or other personal fields in the URL. No survey iframe, payment callback, payment verification, questionnaire answers, or completion tracking exists on this site.
+Set `paymentUrl` to this edition's Tikkie and `contribution` to the agreed amount. The link opens in a separate tab without passing names, emails, or other personal fields in the URL. No payment callback or payment verification exists on this site.
 
-Guests can proceed to questions without clicking or verifying payment. Payment matching is informal organizer work. The page does not claim a paid/confirmed spot. Missing payment or survey links show clear fallback copy rather than broken links. Only HTTPS outbound URLs are enabled.
+Guests can finish registration without clicking or verifying payment. Payment matching is informal organizer work. The completion page thanks the guest and invites ideas for the evening; it does not claim a paid/confirmed spot. Missing payment links show clear fallback copy rather than broken links. Only HTTPS payment URLs are enabled.
 
-Guests may bookmark `registration.html#questionnaire` and open it on another device without registering again. Browser back/forward and refreshing preserve the visible stage; same-tab session storage holds only a receipt flag and random request ID, never name/email/notes or payment/questionnaire status. If storage is blocked, the current-page flow still works. Starting another registration resets that tab's receipt, not previously submitted data.
+Browser back/forward and refreshing preserve the visible stage; same-tab session storage holds only a receipt flag and random request ID, never name/email/notes or payment status. Payment and completion require a saved-details receipt in the current tab. If storage is blocked, the current-page flow still works. Starting another registration resets that tab's receipt, not previously submitted data.
 
-Survey save/resume belongs to the chosen provider. For example, [Google Forms saves drafts for 30 days when the respondent is signed into a Google account](https://support.google.com/docs/answer/10952360?hl=en); the form owner can disable that feature. Test those settings before promising resume behavior. We currently make no provider-specific saving promise on the page.
+The questionnaire is deliberately excluded from this PR. Its provider, flow, and any external link will be handled in a separate future PR when decided. The historical prototype folder remains untouched.
 
 ## Local run and checks
 
@@ -70,7 +70,7 @@ To use an installed Chrome and regenerate screenshots:
 PLAYWRIGHT_CHANNEL=chrome CAPTURE_SCREENSHOTS=1 npm test
 ```
 
-Tests use an isolated headless browser and a temporary local HTTP server. They cover the homepage link, configuration missing/invalid, validation, failure/retry, acknowledgment, duplicate clicks, data minimization, external questionnaire navigation, browser history, refresh, registering a second attendee, and mobile overflow. Screenshots use a mocked submission endpoint and example.com outbound links; no real accounts, payments, emails, or questionnaire responses are involved.
+Tests use an isolated headless browser and a temporary local HTTP server. They cover the homepage link, configuration missing/invalid, validation, failure/retry, acknowledgment, duplicate clicks, data minimization, external payment navigation, browser history, refresh, registering a second attendee, header alignment, and mobile overflow. Screenshots use a mocked submission endpoint and example.com outbound links; no real accounts, payments, or emails are involved.
 
 ## Review screenshots
 
@@ -80,7 +80,6 @@ The configured screenshots show synthetic attendee details; the dates and contri
 | --- | --- | --- |
 | Details | [Screenshot](screenshots/desktop-01-details.png) | [Screenshot](screenshots/mobile-01-details.png) |
 | Tikkie | [Screenshot](screenshots/desktop-02-payment.png) | [Screenshot](screenshots/mobile-02-payment.png) |
-| External questionnaire | [Screenshot](screenshots/desktop-03-questionnaire.png) | [Screenshot](screenshots/mobile-03-questionnaire.png) |
-| Later | [Screenshot](screenshots/desktop-04-later.png) | [Screenshot](screenshots/mobile-04-later.png) |
+| Completion | [Screenshot](screenshots/desktop-03-completion.png) | [Screenshot](screenshots/mobile-03-completion.png) |
 
-[Registration not open](screenshots/registration-not-open.png) · [Submission error](screenshots/submission-error.png) · [Questionnaire not ready at 320px](screenshots/questionnaire-not-ready-mobile.png)
+[Registration not open](screenshots/registration-not-open.png) · [Submission error](screenshots/submission-error.png) · [Payment not ready at 320px](screenshots/payment-not-ready-mobile.png) · [Synthetic date layout check](screenshots/date-layout-fixture-mobile.png)

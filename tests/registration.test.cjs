@@ -42,10 +42,10 @@ async function pageFor(t, { configured = true, viewport = { width: 1440, height:
   if (configured) {
     // Only this test browser sees these fixtures. Production has empty links/endpoint.
     const fixture = {
-      id: '04', title: 'ai convos #4', date: 'date to be announced', time: 'time to be announced',
-      venue: 'venue to be announced', contribution: 'amount to be announced',
+      id: '04', title: 'ai convos #4', date: 'date to be announced', month: 'tba', day: '—', time: 'time to be announced',
+      venue: 'address to be announced · Amsterdam', contribution: 'amount to be announced',
       registrationEndpoint: '/registrations', paymentUrl: 'https://example.com/payment',
-      questionnaireUrl: 'https://example.com/questionnaire', ...overrides,
+      ...overrides,
     };
     await page.route('**/assets/edition.js', route => route.fulfill({
       contentType: 'text/javascript', body: `export const edition = ${JSON.stringify(fixture)};`,
@@ -69,6 +69,16 @@ async function screenshot(page, name) {
     return r.width && (r.right > innerWidth + 1 || r.left < -1);
   }).map(element => element.tagName + '.' + element.className));
   assert.deepEqual(overflow, [], 'no horizontal overflow');
+  const header = await page.evaluate(() => {
+    const rect = selector => {
+      const { top, bottom, left } = document.querySelector(selector).getBoundingClientRect();
+      return { top, bottom, left };
+    };
+    return { month: rect('.edition-month'), label: rect('.edition-heading .eyebrow'), day: rect('.edition-day'), title: rect('.edition-heading h1'), location: rect('.edition-location') };
+  });
+  assert.ok(Math.abs(header.month.top - header.label.top) < 1, 'month aligns with the blue label');
+  assert.ok(Math.abs(header.day.bottom - header.title.bottom) < 1, 'day aligns with the event title');
+  assert.equal(header.location.left, header.title.left, 'address aligns under the event title');
   if (process.env.CAPTURE_SCREENSHOTS) await page.screenshot({ path: path.join(screenshots, name + '.png'), fullPage: true });
 }
 
@@ -82,13 +92,14 @@ test('homepage links to the registration page; missing configuration never colle
   await screenshot(page, 'registration-not-open');
   await page.goto(base + '/registration.html#payment');
   assert.equal(await page.locator('[data-stage="details"]').isVisible(), true);
-  await page.goto(base + '/registration.html#questionnaire');
-  assert.equal(await page.locator('#questionnaire-link').isVisible(), false);
-  assert.equal(await page.locator('#questionnaire-unavailable').isVisible(), true);
+  await page.goto(base + '/registration.html#complete');
+  assert.equal(await page.locator('[data-stage="details"]').isVisible(), true);
+  assert.equal(await page.locator('[data-stage]').count(), 3);
+  assert.doesNotMatch(await page.locator('body').textContent(), /questionnaire|First, a name|A small contribution helps|a question\? get in touch|Paying for someone else too/i);
 });
 
 for (const [size, viewport] of Object.entries({ desktop: { width: 1440, height: 1040 }, mobile: { width: 390, height: 844 } })) {
-  test(`${size}: details → payment → external questionnaire → later; refresh and another attendee`, async t => {
+  test(`${size}: details → payment → completion; refresh and another attendee`, async t => {
     const page = await pageFor(t, { viewport });
     const requests = [];
     await page.route('**/registrations', async route => {
@@ -108,29 +119,30 @@ for (const [size, viewport] of Object.entries({ desktop: { width: 1440, height: 
     await screenshot(page, `${size}-02-payment`);
     assert.equal(await page.locator('#payment-link').getAttribute('target'), '_blank');
     // No payment link click/verification is required to continue.
-    await page.locator('[data-stage="payment"] [data-go="questionnaire"]').click();
-    await page.waitForURL('**/registration.html#questionnaire');
-    await screenshot(page, `${size}-03-questionnaire`);
+    await page.locator('[data-go="complete"]').click();
+    await page.waitForURL('**/registration.html#complete');
+    assert.equal(await page.locator('#complete-title').innerText(), 'Thanks, see you there.');
+    assert.equal(await page.locator('[aria-current="step"]').getAttribute('data-progress'), 'complete');
+    await screenshot(page, `${size}-03-completion`);
     assert.equal(await page.locator('iframe').count(), 0);
     const storage = await page.evaluate(() => JSON.stringify(sessionStorage));
     assert.doesNotMatch(storage, /Ada|ada@example|Sam/);
     assert.doesNotMatch(await page.locator('body').innerText(), /payment confirmed|spot confirmed/i);
-    await page.context().route('https://example.com/**', route => route.fulfill({ body: 'External questionnaire fixture' }));
-    const popupPromise = page.waitForEvent('popup');
-    await page.locator('#questionnaire-link').click();
-    const popup = await popupPromise;
-    await popup.waitForLoadState();
-    assert.equal(popup.url(), 'https://example.com/questionnaire');
-    await popup.close();
-    assert.equal(await page.locator('[data-stage="questionnaire"]').isVisible(), true);
-    await page.locator('[data-go="later"]').click();
-    await screenshot(page, `${size}-04-later`);
     await page.reload();
-    await page.locator('#later-title').waitFor();
+    await page.locator('#complete-title').waitFor();
     assert.equal(requests.length, 1, 'refresh must not resubmit');
     await page.goBack();
-    await page.locator('#questionnaire-title').waitFor();
-    await page.locator('[data-go="later"]').click();
+    await page.locator('#payment-title').waitFor();
+    await page.context().route('https://example.com/**', route => route.fulfill({ body: 'External payment fixture' }));
+    const popupPromise = page.waitForEvent('popup');
+    await page.locator('#payment-link').click();
+    const popup = await popupPromise;
+    await popup.waitForLoadState();
+    assert.equal(popup.url(), 'https://example.com/payment');
+    await popup.close();
+    assert.equal(await page.locator('[data-stage="payment"]').isVisible(), true);
+    await page.goForward();
+    await page.locator('#complete-title').waitFor();
     const firstReceipt = await page.evaluate(() => sessionStorage.getItem('ai-convos:registration:04'));
     await page.locator('#register-another').click();
     assert.equal(await page.locator('#guest-name').inputValue(), '');
@@ -172,13 +184,27 @@ test('validation, failed responses, retry and duplicate clicks do not advance wi
   assert.equal(ids[0], ids[1], 'retry uses the same deduplication key');
 });
 
-test('invalid links are not rendered and questionnaire can be opened from a shared bookmark', async t => {
-  const page = await pageFor(t, { viewport: { width: 320, height: 740 }, overrides: { paymentUrl: 'javascript:alert(1)', questionnaireUrl: 'http://example.com/questions' } });
-  await page.goto(base + '/registration.html#questionnaire');
-  assert.equal(await page.locator('#questionnaire-unavailable').isVisible(), true);
-  assert.equal(await page.locator('#questionnaire-link').getAttribute('href'), null);
+test('invalid payment links are not rendered; guests can still finish at 320px', async t => {
+  const page = await pageFor(t, { viewport: { width: 320, height: 740 }, overrides: { paymentUrl: 'javascript:alert(1)' } });
+  await page.route('**/registrations', route => route.fulfill({ json: { ok: true } }));
+  await page.goto(base + '/registration.html');
+  await fill(page);
+  await page.locator('#details-submit').click();
+  await page.waitForURL('**/registration.html#payment');
+  assert.equal(await page.locator('#payment-unavailable').isVisible(), true);
   assert.equal(await page.locator('#payment-link').getAttribute('href'), null);
-  await screenshot(page, 'questionnaire-not-ready-mobile');
+  await screenshot(page, 'payment-not-ready-mobile');
+  await page.locator('[data-go="complete"]').click();
+  await page.locator('#complete-title').waitFor();
+});
+
+test('confirmed date labels keep the shared header rows aligned', async t => {
+  const page = await pageFor(t, { viewport: { width: 390, height: 844 }, overrides: { month: 'nov', day: '05', date: '5 November 2026' } });
+  await page.goto(base + '/registration.html');
+  assert.equal(await page.locator('.edition-month').innerText(), 'nov');
+  assert.equal(await page.locator('.edition-day').innerText(), '05');
+  // A synthetic date tests the layout without publishing an unconfirmed edition date.
+  await screenshot(page, 'date-layout-fixture-mobile');
 });
 
 test('200 without a save acknowledgment does not claim success', async t => {
