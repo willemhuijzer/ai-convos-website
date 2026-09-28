@@ -1,0 +1,10 @@
+{
+  "name": "ai-convos-website",
+  "private": true,
+  "scripts": {
+    "test": "node --test tests/registration.test.cjs"
+  },
+  "devDependencies": {
+    "playwright": "1.62.1"
+  }
+}

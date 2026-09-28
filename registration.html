@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Join the next AI Convos edition. Leave your details, contribute with Tikkie, and tell us a little about yourself in the questionnaire.">
+  <meta name="theme-color" content="#f4f2ee">
+  <title>Join AI Convos — registration</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%236f5ee8'/%3E%3C/svg%3E">
+  <script src="assets/navigation.js"></script>
+  <link rel="stylesheet" href="assets/site.css">
+  <link rel="stylesheet" href="assets/registration.css">
+  <script type="module" src="assets/registration.js"></script>
+</head>
+<body>
+  <header class="site-header shell">
+    <a class="brand" href="index.html" aria-label="AI Convos home">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-name">ai convos</span>
+    </a>
+    <a class="text-link" href="index.html#events">back to event</a>
+  </header>
+
+  <main class="registration-shell">
+    <header class="edition-heading">
+      <div class="edition-number" aria-hidden="true">04<span>edition</span></div>
+      <div>
+        <div class="eyebrow">join the conversation</div>
+        <h1 class="event-name" data-edition="title">ai convos #4</h1>
+        <p class="edition-date" data-edition="date">date to be announced</p>
+      </div>
+    </header>
+
+    <div class="registration-layout">
+      <aside aria-label="About this edition">
+        <dl class="edition-facts">
+          <div><dt>when</dt><dd data-edition="time">time to be announced</dd></div>
+          <div><dt>where</dt><dd data-edition="venue">venue to be announced</dd></div>
+          <div><dt>contribution</dt><dd data-edition="contribution">amount to be announced</dd></div>
+        </dl>
+        <p class="aside-note">A small contribution helps cover the evening and makes it easier to count on everyone coming.</p>
+        <a class="text-link contact-link" href="mailto:hello@aiconvos.nl">a question? get in touch</a>
+      </aside>
+
+      <div class="registration-card">
+        <ol class="steps" aria-label="Registration progress">
+          <li aria-current="step" data-progress="details"><span>01</span> details</li>
+          <li data-progress="payment"><span>02</span> Tikkie</li>
+          <li data-progress="questionnaire"><span>03</span> questions</li>
+        </ol>
+
+        <section data-stage="details" aria-labelledby="details-title">
+          <h2 id="details-title" tabindex="-1">Your details</h2>
+          <p class="stage-intro">First, a name for the guest list.</p>
+          <p class="notice" id="registration-unavailable" role="status">Registration opens soon. Come back here for the payment and questionnaire links.</p>
+          <noscript><p class="notice">Please enable JavaScript to register, or contact <a href="mailto:hello@aiconvos.nl">hello@aiconvos.nl</a>.</p></noscript>
+          <form id="registration-form">
+            <fieldset id="registration-fields" disabled>
+              <legend class="visually-hidden">Your registration details</legend>
+              <label for="guest-name">your name</label>
+              <input id="guest-name" name="name" autocomplete="name" required maxlength="120" placeholder="Ada Lovelace">
+              <label for="guest-email">email</label>
+              <input id="guest-email" name="email" type="email" autocomplete="email" required maxlength="254" placeholder="ada@example.com">
+              <label for="guest-notes">anything else? <span>(optional)</span></label>
+              <textarea id="guest-notes" name="notes" rows="2" maxlength="1000" placeholder="Paying for someone else? Let us know who."></textarea>
+              <button type="submit" class="button primary" id="details-submit"><span id="details-submit-label">continue to payment</span><span aria-hidden="true">→</span></button>
+            </fieldset>
+            <p id="registration-error" class="error" role="alert" hidden></p>
+            <p class="form-note">We use your details for this edition’s guest list and practical updates. Questions about your information? <a href="mailto:hello@aiconvos.nl">Get in touch.</a></p>
+          </form>
+        </section>
+
+        <section data-stage="payment" aria-labelledby="payment-title" hidden>
+          <h2 id="payment-title" tabindex="-1">Your contribution</h2>
+          <p class="stage-intro">Your details are on the list. Pay with Tikkie, then come back here for the questionnaire.</p>
+          <div class="contribution-row"><span>per person</span><strong data-edition="contribution">amount to be announced</strong></div>
+          <a class="button primary" id="payment-link" target="_blank" rel="noopener noreferrer" hidden>pay with Tikkie <span aria-hidden="true">↗</span></a>
+          <p class="notice" id="payment-unavailable">The payment link isn’t ready yet. You can still continue to the questionnaire.</p>
+          <p class="link-note" id="payment-link-note" hidden>Opens in a new tab. Come back here afterwards.</p>
+          <button class="button secondary" type="button" data-go="questionnaire">continue to questionnaire <span aria-hidden="true">→</span></button>
+          <p class="form-note">Paying for someone else too? Use Tikkie for each person and tell us who the payment covers.</p>
+        </section>
+
+        <section data-stage="questionnaire" aria-labelledby="questionnaire-title" hidden>
+          <h2 id="questionnaire-title" tabindex="-1">Who’s in the room?</h2>
+          <p class="stage-intro">Your answers help us share a picture of how the room uses and thinks about AI.</p>
+          <p>Please complete the questionnaire before the evening, or when you arrive.</p>
+          <a class="button primary" id="questionnaire-link" target="_blank" rel="noopener noreferrer" hidden>open questionnaire <span aria-hidden="true">↗</span></a>
+          <p class="notice" id="questionnaire-unavailable">The questionnaire is coming soon. Come back to this page for the link, or ask us when you arrive.</p>
+          <p class="link-note" id="questionnaire-link-note" hidden>Opens in a new tab. You’ll fill it in there.</p>
+          <button class="button secondary" type="button" data-go="later">I’ll do this later</button>
+          <button class="back-button" type="button" data-go="payment">← back to payment</button>
+        </section>
+
+        <section data-stage="later" aria-labelledby="later-title" hidden>
+          <div class="closing-mark" aria-hidden="true">↗</div>
+          <h2 id="later-title" tabindex="-1">See you in the room.</h2>
+          <p class="stage-intro">Another time is fine. Bookmark this page to find the questionnaire again.</p>
+          <p>If you haven’t filled it in beforehand, we’ll ask you to do it when you arrive.</p>
+          <button class="button primary" type="button" data-go="questionnaire">back to questionnaire <span aria-hidden="true">→</span></button>
+          <button class="back-button" type="button" data-go="payment">← back to payment</button>
+          <button class="back-button" type="button" id="register-another" hidden>register another person →</button>
+        </section>
+      </div>
+    </div>
+    <p class="registration-footer">short talks. good questions. time to connect.</p>
+  </main>
+</body>
+</html>
