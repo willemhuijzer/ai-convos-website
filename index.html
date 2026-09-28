@@ -175,6 +175,7 @@
     .past-heading { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.4rem 1.1rem; }
     .past-date { color: var(--accent); font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.05em; }
     .past-title { font-size: clamp(1.35rem, 3vw, 2rem); letter-spacing: -0.025em; }
+    .past-summary { max-width: 65ch; margin-top: 1rem; line-height: 1.55; }
     .talks { display: grid; gap: 2px; max-width: 54rem; margin-top: 1.15rem; }
     .talk { padding: 0.9rem 1rem; background: rgba(232, 228, 251, 0.78); }
     .talk-title { line-height: 1.35; }
@@ -210,6 +211,10 @@
     .footer-title { margin-bottom: 0.5rem; color: var(--ink); }
     footer a { border-bottom: 1px solid transparent; }
     footer a:hover { border-color: currentColor; }
+
+    @media (min-width: 721px) {
+      .past-heading { align-items: last baseline; }
+    }
 
     @media (max-width: 720px) {
       .shell { width: min(100% - 28px, 1180px); }
@@ -271,18 +276,19 @@
       <div class="eyebrow" id="past-events-title">past</div>
       <article class="past-event">
         <div class="past-heading">
-          <time class="past-date" datetime="2026-05-09">09.05.2026</time>
-          <div class="past-title">third edition</div>
-          <div class="past-meta">billy grace · amsterdam</div>
+          <time class="past-date" datetime="2026-04-16">16.04.2026</time>
+          <div class="past-title">#03 AI Convos</div>
+          <div class="past-meta">Gaide<br>Keizersgracht 452 · Amsterdam</div>
         </div>
-        <div class="talks" aria-label="Talks at the third edition">
+        <p class="past-summary">Three short talks, followed by time to carry on the conversation. Topics ranged from AI in cancer research and understanding neural networks to building Seleqt and getting acquired.</p>
+        <div class="talks" aria-label="Talks at edition 3">
           <div class="talk">
-            <div class="talk-title">How Multimodal AI Can Help Doctors Interpret Cancer Research</div>
-            <div class="talk-speaker">Max Emanuel Feucht · evaluation lead at kaiko.ai</div>
+            <div class="talk-title">How Multimodal AI Can Help Doctors Interpret Cancer</div>
+            <div class="talk-speaker">Max · evaluation work at Kaiko</div>
           </div>
           <div class="talk">
-            <div class="talk-title">The True Working of Neural Networks</div>
-            <div class="talk-speaker">Simon Ilic · PhD researcher at CWI</div>
+            <div class="talk-title">True Working of Neural Networks</div>
+            <div class="talk-speaker">Simon</div>
           </div>
           <div class="talk">
             <div class="talk-title">Building Seleqt and Getting Acquired: Lessons from the Journey</div>
@@ -292,17 +298,19 @@
       </article>
       <article class="past-event">
         <div class="past-heading">
-          <time class="past-date" datetime="2025-04-15">15.04.2025</time>
-          <div class="past-title">second edition</div>
-          <div class="past-meta">keizersgracht 452 · amsterdam</div>
+          <time class="past-date" datetime="2025-05-09">09.05.2025</time>
+          <div class="past-title">#02 AI Connect</div>
+          <div class="past-meta">ACE + Company<br>19th floor, WTC · Amsterdam</div>
         </div>
+        <p class="past-summary">ACE + Company shared how they use AI in their work. We looked at the group’s questionnaire results, then split into smaller groups to share experiences and learn from each other.</p>
       </article>
       <article class="past-event">
         <div class="past-heading">
-          <time class="past-date" datetime="2024-11-24">24.11.2024</time>
-          <div class="past-title">first edition</div>
-          <div class="past-meta">keizersgracht 452 · amsterdam</div>
+          <time class="past-date" datetime="2024-11-29">29.11.2024</time>
+          <div class="past-title">#01 AI Sessions</div>
+          <div class="past-meta">Billy Grace<br>Prof. Tulpstraat 14 · Amsterdam</div>
         </div>
+        <p class="past-summary">We kicked off at Billy Grace with an introduction to the company and a look at how everyone in the room used and thought about AI. A questionnaire brought together the tools we used, predictions for AGI and ideas about where AI was heading.</p>
       </article>
     </section>
 

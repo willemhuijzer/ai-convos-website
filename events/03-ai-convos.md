@@ -13,8 +13,11 @@
 
 1. Max — “How Multimodal AI Can Help Doctors Interpret Cancer,” drawing on evaluation work at Kaiko.
 2. Simon — “True Working of Neural Networks,” about hidden patterns in neural-network research and whether a network can be judged from its weights.
-3. Conflicting: the invitation says TBA; the current website names Noah van Rijn speaking about building and selling Seleqt. Confirm before treating this as historical fact.
+3. Confirmed: Noah van Rijn, founder of Seleqt — “Building Seleqt and Getting Acquired: Lessons from the Journey,” about building Seleqt and lessons from its acquisition.
 
-## Conflict with the current website
+## Line-up sources
 
-`index.html` dates this edition 9 May 2026 and locates it at Billy Grace. Those claims conflict with the direct invitation and should not be propagated without new evidence.
+- The organizer confirmed Noah was the third speaker and pointed to the original website history.
+- Initial site commit `260b5c0` lists “Noah van Rijn - Founder @ seleqt” with the title “Building Seleqt and getting acquired: this are the learnings.”
+- Website cleanup commit `4c7e993` polished that title to “Building Seleqt and Getting Acquired: Lessons from the Journey,” retained in `ca560ca`. This is the wording restored to the website.
+- The invitation’s earlier TBA placeholder is superseded by the organizer’s confirmation and the historical line-up.

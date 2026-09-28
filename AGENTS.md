@@ -31,3 +31,14 @@ AI Convos is an Amsterdam meetup series for people who work deeply with AI. The 
 - Keep editions in chronological order and preserve their historical public names.
 - Check weekday/date combinations, organization and speaker spellings, address, start time, talk duration, and link freshness.
 - When new evidence resolves a conflict, update the edition file and remove the obsolete conflict note in the same change.
+
+## Pull request screenshots
+
+- Always include one or more screenshots of website changes in the pull request description. Capture the affected sections with a background browser and embed the images so reviewers can see the result directly.
+
+## Public event copy
+
+- Edition files are internal source material, not website-ready copy. Write concise, conversational, matter-of-fact accounts of what guests did or discussed.
+- Keep organizer retrospectives, preparation effort, record gaps, and source conflicts in the internal notes. Omit uncertain public claims rather than publishing editorial caveats; surface questions to the organizer when needed.
+- Keep past-edition locations compact. Use the host or venue and city; include useful context such as the WTC’s 19th floor instead of a full postal address.
+- Use a consistent date, title, location, and brief description for each edition. Add talk details where known without inventing matching content for editions with less information.
