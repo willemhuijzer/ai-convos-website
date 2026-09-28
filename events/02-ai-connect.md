@@ -8,7 +8,3 @@
 - Format: drinks, snacks, conversation, and optional drinks nearby afterwards. Detailed talk information is unknown.
 - Historical contribution: €7.90. Do not reuse the old payment request.
 - Questionnaire: [Edition 2 form](https://docs.google.com/forms/d/e/1FAIpQLScGNoS-3vLW-PAuDLEN_Y7lN_0xpkzYNDuX_u0TYMDNuexWyA/viewform?usp=sharing). Whether or how its results were used is unknown.
-
-## Conflict with the current website
-
-`index.html` dates this edition 15 April 2025 and locates it at Keizersgracht 452. Those claims conflict with the organizer notes.

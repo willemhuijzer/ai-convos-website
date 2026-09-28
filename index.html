@@ -175,6 +175,8 @@
     .past-heading { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.4rem 1.1rem; }
     .past-date { color: var(--accent); font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.05em; }
     .past-title { font-size: clamp(1.35rem, 3vw, 2rem); letter-spacing: -0.025em; }
+    .past-summary { max-width: 65ch; margin-top: 1rem; line-height: 1.55; }
+    .past-note { max-width: 65ch; margin-top: 0.75rem; color: var(--muted); font-size: 0.85rem; line-height: 1.55; }
     .talks { display: grid; gap: 2px; max-width: 54rem; margin-top: 1.15rem; }
     .talk { padding: 0.9rem 1rem; background: rgba(232, 228, 251, 0.78); }
     .talk-title { line-height: 1.35; }
@@ -271,38 +273,40 @@
       <div class="eyebrow" id="past-events-title">past</div>
       <article class="past-event">
         <div class="past-heading">
-          <time class="past-date" datetime="2026-05-09">09.05.2026</time>
-          <div class="past-title">third edition</div>
-          <div class="past-meta">billy grace · amsterdam</div>
+          <time class="past-date" datetime="2026-04-16">16.04.2026</time>
+          <div class="past-title">AI Convos · edition 3</div>
+          <div class="past-meta">host: Gaide (spelling unconfirmed)<br>Keizersgracht 452 · Amsterdam</div>
         </div>
-        <div class="talks" aria-label="Talks at the third edition">
+        <p class="past-summary">Three voices, three perspectives: this edition tried lightning rounds, with 15 minutes per speaker in the invitation and time to continue the conversation afterwards. The variety was well received.</p>
+        <div class="talks" aria-label="Documented talks at edition 3">
           <div class="talk">
-            <div class="talk-title">How Multimodal AI Can Help Doctors Interpret Cancer Research</div>
-            <div class="talk-speaker">Max Emanuel Feucht · evaluation lead at kaiko.ai</div>
+            <div class="talk-title">How Multimodal AI Can Help Doctors Interpret Cancer</div>
+            <div class="talk-speaker">Max · evaluation work at Kaiko</div>
           </div>
           <div class="talk">
-            <div class="talk-title">The True Working of Neural Networks</div>
-            <div class="talk-speaker">Simon Ilic · PhD researcher at CWI</div>
-          </div>
-          <div class="talk">
-            <div class="talk-title">Building Seleqt and Getting Acquired: Lessons from the Journey</div>
-            <div class="talk-speaker">Noah van Rijn · founder of Seleqt</div>
+            <div class="talk-title">True Working of Neural Networks</div>
+            <div class="talk-speaker">Simon · hidden patterns and what a network’s weights can tell us</div>
           </div>
         </div>
+        <p class="past-note">The third speaker is unconfirmed in our records. The audience questionnaire took a break this edition; attendees said they missed its insights into the room.</p>
       </article>
       <article class="past-event">
         <div class="past-heading">
-          <time class="past-date" datetime="2025-04-15">15.04.2025</time>
-          <div class="past-title">second edition</div>
-          <div class="past-meta">keizersgracht 452 · amsterdam</div>
+          <time class="past-date" datetime="2025-05-09">09.05.2025</time>
+          <div class="past-title">AI Connect · edition 2</div>
+          <div class="past-meta">host: ACE + Company<br>Tower One, 19th floor · WTC Amsterdam · Zuidplein 156 · Amsterdam</div>
         </div>
+        <p class="past-summary">Drinks, snacks and conversation at WTC Amsterdam, with optional drinks nearby afterwards.</p>
+        <p class="past-note">Talk details are not recorded. An audience questionnaire was shared beforehand; how its results were used is unknown.</p>
       </article>
       <article class="past-event">
         <div class="past-heading">
-          <time class="past-date" datetime="2024-11-24">24.11.2024</time>
-          <div class="past-title">first edition</div>
-          <div class="past-meta">keizersgracht 452 · amsterdam</div>
+          <time class="past-date" datetime="2024-11-29">29.11.2024</time>
+          <div class="past-title">AI Sessions · edition 1</div>
+          <div class="past-meta">host: Billy Grace<br>Prof. Tulpstraat 14 · Amsterdam</div>
         </div>
+        <p class="past-summary">The first edition introduced Billy Grace, then explored the room through an audience questionnaire: the AI tools people used, their expectations for AGI, who might win the AI race, and their current and dream jobs.</p>
+        <p class="past-note">Sharing the aggregated answers was fun and insightful, though preparing the results took substantial time.</p>
       </article>
     </section>
 

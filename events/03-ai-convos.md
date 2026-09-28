@@ -13,8 +13,4 @@
 
 1. Max — “How Multimodal AI Can Help Doctors Interpret Cancer,” drawing on evaluation work at Kaiko.
 2. Simon — “True Working of Neural Networks,” about hidden patterns in neural-network research and whether a network can be judged from its weights.
-3. Conflicting: the invitation says TBA; the current website names Noah van Rijn speaking about building and selling Seleqt. Confirm before treating this as historical fact.
-
-## Conflict with the current website
-
-`index.html` dates this edition 9 May 2026 and locates it at Billy Grace. Those claims conflict with the direct invitation and should not be propagated without new evidence.
+3. Conflicting: the invitation says TBA; the previous website copy named Noah van Rijn speaking about building and selling Seleqt. Confirm before treating this as historical fact.
