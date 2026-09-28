@@ -31,3 +31,7 @@ AI Convos is an Amsterdam meetup series for people who work deeply with AI. The 
 - Keep editions in chronological order and preserve their historical public names.
 - Check weekday/date combinations, organization and speaker spellings, address, start time, talk duration, and link freshness.
 - When new evidence resolves a conflict, update the edition file and remove the obsolete conflict note in the same change.
+
+## Pull request screenshots
+
+- Always include one or more screenshots of website changes in the pull request description. Capture the affected sections with a background browser and embed the images so reviewers can see the result directly.
