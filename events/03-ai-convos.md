@@ -5,14 +5,14 @@
 - Time: confirmed 19:00 start.
 - Host: Gaide, subject to spelling confirmation; one note writes `Gate.ai` while the invitation says “Gaide Office.”
 - Venue: confirmed Keizersgracht 452, Amsterdam.
-- Format: an experiment with three speakers in lightning rounds. The invitation says 15 minutes per speaker, followed by time to continue the conversation.
+- Format: an experiment with three speakers in lightning rounds. The invitation says 15 minutes per speaker, followed by time to continue the conversation. The organizer clarified the public format as three short talks followed by time for open QA.
 - Learning: the variety of three voices was well received and should continue to inform future formats.
 - Questionnaire: not run because preparing it was too time-consuming. Attendees said they missed it because its group-level insights were valuable.
 
 ## Known line-up
 
 1. Max — “How Multimodal AI Can Help Doctors Interpret Cancer,” drawing on evaluation work at Kaiko.
-2. Simon — “True Working of Neural Networks,” about hidden patterns in neural-network research and whether a network can be judged from its weights.
+2. Simon — Deep Learning PhD (credential confirmed by the organizer) — “True Working of Neural Networks,” about hidden patterns in neural-network research and whether a network can be judged from its weights.
 3. Confirmed: Noah van Rijn, founder of Seleqt — “Building Seleqt and Getting Acquired: Lessons from the Journey,” about building Seleqt and lessons from its acquisition.
 
 ## Line-up sources
