@@ -11,7 +11,7 @@
 
 ## Known line-up
 
-1. Max Feucht (full name confirmed by the organizer on 18 November 2026) — “How Multimodal AI Can Help Doctors Interpret Cancer,” drawing on evaluation work at Kaiko.
+1. Max Emanuel Feucht, ML Evaluation Lead at Kaiko (name and role confirmed by the organizer on 18 November 2026; [LinkedIn](https://www.linkedin.com/in/max-emanuel-feucht-a121221b2/)) — “How Multimodal AI Can Help Doctors Interpret Cancer,” drawing on evaluation work at Kaiko.
 2. Simon Ilic (full name confirmed by the organizer on 18 November 2026) — Deep Learning PhD (credential confirmed by the organizer) — “What if the model is the data? The true working of neural networks,” about hidden patterns in neural-network research and whether a network can be judged from its weights.
 3. Confirmed: Noah van Rijn, founder of Seleqt — “Building Seleqt and Getting Acquired: Lessons from the Journey,” about building Seleqt and lessons from its acquisition.
 
