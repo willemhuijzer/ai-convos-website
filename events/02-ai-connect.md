@@ -14,14 +14,14 @@
 Confirmed by a follow-up organizer account:
 
 1. ACE + Company introduced what they do, starting with an introduction of their CTO, Nick Prince (confirmed by the organizer on 18 November 2026).
-2. Harsh Pundhir, AI Engineer, and colleagues explained their work and how they implemented AI within the company. They described using LLMs to identify the most important parts of regulatory documents for clients and help automate regulatory processes. Exact talk titles and the other colleagues’ names are unknown.
+2. Harsh Pundhir, AI Engineer, and colleagues explained their work and how they implemented AI within the company. They described using LLMs to identify the most important parts of regulatory documents for clients and help automate regulatory processes. The other colleagues’ names are unknown.
 
 ## Speakers
 
 Confirmed by the organizer on 18 November 2026:
 
-- Nick Prince — CTO, ACE + Company.
-- Harsh Pundhir — AI Engineer, ACE + Company. The organizer’s message spelled the first name “Harch”; earlier organizer notes say “Harsh”. The site uses “Harsh” pending confirmation.
+- Nick Prince — CTO, ACE + Company — “Positioning as a company in the new AI age.”
+- Harsh Pundhir — AI Engineer, ACE + Company — “How to make AI understand the full context: knowledge graphs.” The organizer’s message spelled the first name “Harch”; earlier organizer notes say “Harsh”. The site uses “Harsh” pending confirmation.
 3. The group went through the audience questionnaire results, discussing attendees’ views on AI and how it was being used. The account establishes the general subject, not a precise list of questions.
 4. Attendees split into smaller groups to give everyone more opportunity to share and learn from one another.
 
