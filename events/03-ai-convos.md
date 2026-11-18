@@ -5,7 +5,7 @@
 - Time: confirmed 19:00 start.
 - Host: Gaide, subject to spelling confirmation; one note writes `Gate.ai` while the invitation says “Gaide Office.”
 - Venue: confirmed Keizersgracht 452, Amsterdam.
-- Format: an experiment with three speakers in lightning rounds. The invitation says 15 minutes per speaker, followed by time to continue the conversation. The organizer clarified the public format as three short talks followed by time for open QA.
+- Format: an experiment with three speakers in lightning rounds. Confirmed by the organizer on 18 November 2026: each speaker had 20 minutes in total, talk and Q&A combined. This supersedes the invitation's 15 minutes per speaker.
 - Learning: the variety of three voices was well received and should continue to inform future formats.
 - Questionnaire: not run because preparing it was too time-consuming. Attendees said they missed it because its group-level insights were valuable.
 
