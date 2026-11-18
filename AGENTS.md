@@ -28,7 +28,7 @@ AI Convos is an Amsterdam meetup series for people who work deeply with AI. The 
 ## Updating the site
 
 - Reconcile the affected edition file before changing event details in `index.html`.
-- Keep editions in chronological order and preserve their historical public names.
+- Keep editions in chronological order. On the website, title every edition "AI Convos" with its number (organizer decision, 18 November 2026); keep the historical public names (AI Sessions, AI Connect) in the edition files.
 - Check weekday/date combinations, organization and speaker spellings, address, start time, talk duration, and link freshness.
 - When new evidence resolves a conflict, update the edition file and remove the obsolete conflict note in the same change.
 

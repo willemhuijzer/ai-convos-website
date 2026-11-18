@@ -11,8 +11,8 @@
 
 ## Known line-up
 
-1. Max — “How Multimodal AI Can Help Doctors Interpret Cancer,” drawing on evaluation work at Kaiko.
-2. Simon — Deep Learning PhD (credential confirmed by the organizer) — “What if the model is the data? The true working of neural networks,” about hidden patterns in neural-network research and whether a network can be judged from its weights.
+1. Max Feucht (full name confirmed by the organizer on 18 November 2026) — “How Multimodal AI Can Help Doctors Interpret Cancer,” drawing on evaluation work at Kaiko.
+2. Simon Ilic (full name confirmed by the organizer on 18 November 2026) — Deep Learning PhD (credential confirmed by the organizer) — “What if the model is the data? The true working of neural networks,” about hidden patterns in neural-network research and whether a network can be judged from its weights.
 3. Confirmed: Noah van Rijn, founder of Seleqt — “Building Seleqt and Getting Acquired: Lessons from the Journey,” about building Seleqt and lessons from its acquisition.
 
 ## Line-up sources

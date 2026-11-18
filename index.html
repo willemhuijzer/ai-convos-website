@@ -180,6 +180,7 @@
     .talk { padding: 0.9rem 1rem; background: rgba(232, 228, 251, 0.78); }
     .talk-title { line-height: 1.35; }
     .talk-speaker { margin-top: 0.35rem; color: var(--accent); font-family: var(--mono); font-size: 0.75rem; }
+    .talk-speaker:first-child { margin-top: 0; }
 
     .section-title {
       max-width: 22ch;
@@ -196,7 +197,7 @@
 
     footer {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: minmax(0, 1fr);
       gap: 2rem;
       width: min(1180px, calc(100% - 40px));
       margin: 6rem auto 0;
@@ -240,7 +241,7 @@
     <nav class="site-nav" aria-label="Main navigation">
       <a href="#events">events</a>
       <a href="#speak">speak</a>
-      <a href="mailto:hello@aiconvos.nl?subject=Join%20AI%20Convos">join</a>
+      <a href="#events">join</a>
     </nav>
   </header>
 
@@ -265,8 +266,7 @@
         <div class="event-meta">
           19:00 till late<br>
           keizersgracht 452<br>
-          <span class="free">free</span><br>
-          <a class="text-link event-join" href="mailto:hello@aiconvos.nl?subject=Join%20AI%20Convos%20%234">join the list</a>
+          <span class="free">free</span>
         </div>
         <div class="event-date">05<span>.11.2026</span></div>
       </div>
@@ -284,11 +284,11 @@
         <div class="talks" aria-label="Talks at edition 3">
           <div class="talk">
             <div class="talk-title">How Multimodal AI Can Help Doctors Interpret Cancer</div>
-            <div class="talk-speaker">Max · evaluation work at Kaiko</div>
+            <div class="talk-speaker">Max Feucht · evaluation work at Kaiko</div>
           </div>
           <div class="talk">
             <div class="talk-title">What if the model is the data? The true working of neural networks</div>
-            <div class="talk-speaker">Simon · deep learning PhD</div>
+            <div class="talk-speaker">Simon Ilic · deep learning PhD</div>
           </div>
           <div class="talk">
             <div class="talk-title">Building Seleqt and Getting Acquired: Lessons from the Journey</div>
@@ -299,34 +299,41 @@
       <article class="past-event">
         <div class="past-heading">
           <time class="past-date" datetime="2025-05-09">09.05.2025</time>
-          <div class="past-title">#02 AI Connect</div>
+          <div class="past-title">#02 AI Convos</div>
           <div class="past-meta">ACE + Company<br>19th floor, WTC · Amsterdam</div>
         </div>
         <p class="past-summary">ACE + Company shared how they use AI in their work. We looked at the group’s questionnaire results, then split into smaller groups to share experiences and learn from each other.</p>
+        <div class="talks" aria-label="Speakers at edition 2">
+          <div class="talk">
+            <div class="talk-speaker">Nick Prince · CTO, ACE + Company</div>
+          </div>
+          <div class="talk">
+            <div class="talk-speaker">Harsh Pundhir · AI Engineer, ACE + Company</div>
+          </div>
+        </div>
       </article>
       <article class="past-event">
         <div class="past-heading">
           <time class="past-date" datetime="2024-11-29">29.11.2024</time>
-          <div class="past-title">#01 AI Sessions</div>
+          <div class="past-title">#01 AI Convos</div>
           <div class="past-meta">Billy Grace<br>Prof. Tulpstraat 14 · Amsterdam</div>
         </div>
         <p class="past-summary">We kicked off at Billy Grace with an introduction to the company and a look at how everyone in the room used and thought about AI. A questionnaire brought together the tools we used, predictions for AGI and ideas about where AI was heading.</p>
+        <div class="talks" aria-label="Speakers at edition 1">
+          <div class="talk">
+            <div class="talk-speaker">Quinn Scot · Data Scientist, Billy Grace</div>
+          </div>
+        </div>
       </article>
     </section>
 
     <section class="speak-section shell" id="speak" aria-labelledby="speak-title">
       <h2 class="section-title" id="speak-title">got ten minutes of something you actually learned?</h2>
       <p>one concrete problem, experiment, or failure worth sharing. we are looking for builders, researchers, and technical leads; not generic company pitches.</p>
-      <a class="text-link" href="mailto:hello@aiconvos.nl?subject=Talk%20proposal%20for%20AI%20Convos">hello@aiconvos.nl</a>
     </section>
   </main>
 
   <footer>
-    <div>
-      <div class="footer-title">contact</div>
-      <a href="mailto:hello@aiconvos.nl">hello@aiconvos.nl</a><br>
-      <a href="#speak">propose a talk</a>
-    </div>
     <div>
       <div class="footer-title">address</div>
       gaide office<br>
