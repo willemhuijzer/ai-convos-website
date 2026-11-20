@@ -4,7 +4,7 @@ Each edition has its own context file so its facts, source material, learnings, 
 
 ## Editions
 
-- [Edition 4 — AI Convos](./events/04-ai-convos.md) — upcoming; details need confirmation
+- [Edition 4 — AI Convos](./events/04-ai-convos.md) — upcoming, 21 January 2027; other details need confirmation
 - [Edition 3 — AI Convos](./events/03-ai-convos.md) — 16 April 2026 at Gaide, Amsterdam
 - [Edition 2 — AI Connect](./events/02-ai-connect.md) — 9 May 2025 at ACE + Company, Amsterdam
 - [Edition 1 — AI Sessions](./events/01-ai-sessions.md) — 29 November 2024 at Billy Grace, Amsterdam
